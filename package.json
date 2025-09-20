@@ -1,17 +1,21 @@
 {
-  "name": "discord-user-api",
+  "name": "bug-free-engine",
   "version": "1.0.0",
-  "description": "Serverless function to fetch Discord user data",
-  "main": "api/discord-user.js",
+  "description": "Discord user info & YouTube player project",
+  "main": "index.js",
   "scripts": {
-    "start": "vercel dev",
-    "build": "echo 'No build step required'"
+    "start": "node index.js",
+    "build": "echo \"No build step required\"",
+    "vercel-build": "echo \"Vercel build step\""
   },
   "dependencies": {
-    "node-fetch": "^3.3.1"
+    "node-fetch": "^3.4.0"
   },
+  "devDependencies": {},
   "engines": {
     "node": "22.x"
   },
-  "type": "module"
+  "type": "module",
+  "author": "YourName",
+  "license": "MIT"
 }
