@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Missing user ID" });
   }
 
-  const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN; // Vercel ortam değişkeni
+  const DISCORD_BOT_TOKEN = process.env.TOKEN; // Vercel ortam değişkeni
   if (!DISCORD_BOT_TOKEN) {
     return res.status(500).json({ error: "Bot token not configured" });
   }
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
   try {
     const discordResponse = await fetch(`https://discord.com/api/v10/users/${id}`, {
       headers: {
-        Authorization: `Bot ${DISCORD_BOT_TOKEN}`,
+        Authorization: `Bot ${TOKEN}`,
       },
     });
 
