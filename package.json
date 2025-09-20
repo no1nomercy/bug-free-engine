@@ -1,21 +1,15 @@
 {
   "name": "bug-free-engine",
   "version": "1.0.0",
-  "description": "Discord user info & YouTube player project",
+  "description": "Discord user info API for Vercel",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "build": "echo \"No build step required\"",
-    "vercel-build": "echo \"Vercel build step\""
+    "vercel-build": "echo \"No build step required\"",
+    "start": "vercel dev"
   },
-  "dependencies": {
-    "node-fetch": "^3.3.2"
-  },
-  "devDependencies": {},
   "engines": {
     "node": "22.x"
   },
-  "type": "module",
-  "author": "YourName",
-  "license": "MIT"
+  "dependencies": {}
 }
