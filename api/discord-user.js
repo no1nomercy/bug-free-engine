@@ -1,23 +1,15 @@
 // api/user_info.js
-import fetch from "node-fetch";
-
 export default async function handler(req, res) {
   const { id } = req.query;
 
-  if (!id) {
-    return res.status(400).json({ error: "Missing user ID" });
-  }
+  if (!id) return res.status(400).json({ error: "Missing user ID" });
 
-  const DISCORD_BOT_TOKEN = process.env.TOKEN; // Vercel ortam değişkeni
-  if (!DISCORD_BOT_TOKEN) {
-    return res.status(500).json({ error: "Bot token not configured" });
-  }
+  const DISCORD_BOT_TOKEN = process.env.TOKEN;
+  if (!DISCORD_BOT_TOKEN) return res.status(500).json({ error: "Bot token not configured" });
 
   try {
     const discordResponse = await fetch(`https://discord.com/api/v10/users/${id}`, {
-      headers: {
-        Authorization: `Bot ${TOKEN}`,
-      },
+      headers: { Authorization: `Bot ${DISCORD_BOT_TOKEN}` },
     });
 
     if (!discordResponse.ok) {
@@ -26,7 +18,6 @@ export default async function handler(req, res) {
 
     const userData = await discordResponse.json();
 
-    // Eğer banner veya avatar varsa, tam URL oluştur
     const avatarUrl = userData.avatar
       ? `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.${userData.avatar.startsWith("a_") ? "gif" : "png"}?size=512`
       : null;
