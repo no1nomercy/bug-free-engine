@@ -1,15 +1,27 @@
-// api/user_info.js
-export default async function handler(req, res) {
-  const { id } = req.query;
+// api/discord-user.js
+import fetch from "node-fetch";
 
+export default async function handler(req, res) {
+  // CORS header ekle
+  res.setHeader("Access-Control-Allow-Origin", "*"); // tüm domainlerden izin verir
+  res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end(); // preflight request için
+  }
+
+  const { id } = req.query;
   if (!id) return res.status(400).json({ error: "Missing user ID" });
 
-  const DISCORD_BOT_TOKEN = process.env.TOKEN;
-  if (!DISCORD_BOT_TOKEN) return res.status(500).json({ error: "Bot token not configured" });
+  const TOKEN = process.env.TOKEN;
+  if (!TOKEN) return res.status(500).json({ error: "Bot token not configured" });
 
   try {
     const discordResponse = await fetch(`https://discord.com/api/v10/users/${id}`, {
-      headers: { Authorization: `Bot ${DISCORD_BOT_TOKEN}` },
+      headers: {
+        Authorization: `Bot ${TOKEN}`,
+      },
     });
 
     if (!discordResponse.ok) {
