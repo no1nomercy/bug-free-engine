@@ -1,0 +1,17 @@
+{
+  "name": "discord-user-api",
+  "version": "1.0.0",
+  "description": "Serverless function to fetch Discord user data",
+  "main": "api/discord-user.js",
+  "scripts": {
+    "start": "vercel dev",
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.1"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "type": "module"
+}
